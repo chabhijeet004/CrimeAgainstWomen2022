@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-data=pd.read_excel("C:/Users/HP/Desktop/PYTHON DS/Project_Dataset.xlsx")
+data=pd.read_excel("c:/Users/HP/Desktop/PROJECT/CrimeAgainstWomen2022/Project_Dataset.xlsx")
 print("file readed successfully")
 
 print(data.info())
