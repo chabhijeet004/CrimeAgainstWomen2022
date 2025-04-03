@@ -12,9 +12,9 @@ data.columns = data.columns.str.strip()
 
 
 df = data.dropna()
-df = data[["State", "Rape"]]
+df = data[["State", "Cruelty by Inlaws"]]
 
-statewise_rape_cases = df.groupby("State")["Rape"].sum().sort_values(ascending=True)
+statewise_rape_cases = df.groupby("State")["Cruelty by Inlaws"].sum().sort_values(ascending=True)
 
 # Set figure size 
 plt.figure(figsize=(12, 6))
