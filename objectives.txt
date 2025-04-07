@@ -1,0 +1,14 @@
+1.To compare the frequency of crimes committed against women above 18 and girls below 18 using age-segmented data columns such as rape, attempt to rape, and assault
+
+
+2.Identify High-Risk States for Women 
+
+3.Correlation Between Female Suicides and Cruelty by In-laws
+
+4.To identify and analyze the most prevalent categories of crimes against women
+
+
+5.To identify and rank the safest districts by analyzing and comparing total crime counts across all categories, highlighting regions with the lowest reported incidents against women
+
+
+6.GIS-Based Visualization of Crime Distribution

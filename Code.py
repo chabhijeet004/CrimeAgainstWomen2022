@@ -9,6 +9,20 @@ print("file readed successfully")
 print(data.info())
 # data.columns = data.columns.str.strip()
 
+correlation = data[['Cruelty by Inlaws', 'Suicide of Women']].corr().iloc[0, 1]
+# data_subset = data.iloc[:,[3,12]]
+
+# # Compute correlation
+# corr = data_subset.corr()
+
+# # Plot heatmap
+# import seaborn as sns
+# import matplotlib.pyplot as plt
+
+sns.heatmap(correlation, annot=True, cmap='coolwarm')
+plt.title("Correlation between Dowry Deaths and Cruelty by Inlaws")
+plt.show()
+
 age_segmented = data[[
  'Rape of Women (above 18)',
  'Rape of Women (Below 18)',
