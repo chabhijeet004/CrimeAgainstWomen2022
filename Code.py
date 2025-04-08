@@ -19,9 +19,9 @@ correlation = data[['Cruelty by Inlaws', 'Suicide of Women']].corr().iloc[0, 1]
 # import seaborn as sns
 # import matplotlib.pyplot as plt
 
-sns.heatmap(correlation, annot=True, cmap='coolwarm')
-plt.title("Correlation between Dowry Deaths and Cruelty by Inlaws")
-plt.show()
+# sns.heatmap(correlation, annot=True, cmap='coolwarm')
+# plt.title("Correlation between Dowry Deaths and Cruelty by Inlaws")
+# plt.show()
 
 age_segmented = data[[
  'Rape of Women (above 18)',
