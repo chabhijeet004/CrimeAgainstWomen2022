@@ -49,6 +49,25 @@ heatmap = sns.heatmap(correlation, annot=True, cmap='coolwarm', fmt=".2f", linew
 plt.title("Correlation Heatmap: Female Suicides vs Cruelty by In-laws")
 plt.tight_layout()
 plt.show()
+# Objective 3: Correlation Between Female Suicides and Cruelty by In-laws
+suicide_col = "Suicide of Women"
+cruelty_col = "Cruelty by Inlaws"
+
+# Compute correlation
+correlation_value = data[[suicide_col, cruelty_col]].corr().iloc[0, 1]
+
+# Scatter plot to visualize the relationship
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=data, x=cruelty_col, y=suicide_col, alpha=0.6)
+sns.regplot(data=data, x=cruelty_col, y=suicide_col, scatter=False, color="red", label=f"Corr: {correlation_value:.2f}")
+plt.title("Correlation Between Female Suicides and Cruelty by In-laws")
+plt.xlabel("Cruelty by In-laws")
+plt.ylabel("Suicide of Women")
+plt.legend()
+plt.show()
+
+correlation_value
+
 
 
 
@@ -91,32 +110,6 @@ plt.show()
 
 
 
-# Get all crime columns (assuming they start from the 4th column)
-crime_columns = data.columns[3:]
-
-# Filter only numeric crime data
-crime_data = data[crime_columns].select_dtypes(include='number')
-
-# Sum total crimes per district
-data["Total_Crimes"] = crime_data.sum(axis=1)
-
-# Sort districts by lowest total crimes
-safest_districts = data.sort_values(by="Total_Crimes").reset_index(drop=True)
-
-# Show top 10 safest districts
-top_10_safest = safest_districts[["State", "District", "Total_Crimes"]].head(5)
-print("🛡️ Top 10 Safest Districts (Least Crimes Reported Against Women):\n")
-print(top_10_safest)
-
-plt.figure(figsize=(10, 6))
-plt.bar(top_10_safest["District"], top_10_safest["Total_Crimes"], color='green')
-plt.xlabel("Total Crimes")
-plt.title("Top 10 Safest Districts for Women (Least Crimes)")
-plt.gca().invert_yaxis()  # Highest at the top
-plt.tight_layout()
-plt.show()
-
-# %%
 crime_data = data.iloc[:, 3:]
 
 # Get top 15 crimes based on total counts
@@ -141,9 +134,27 @@ sns.heatmap(filtered_corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.
 plt.title("Correlation Among Top 15 Crimes Against Women")
 plt.tight_layout()
 plt.show()
+# Reading DataSet
+data=pd.read_excel("C:/Users/HP/Desktop/PROJECT/CrimeAgainstWomen2022/Project_Dataset.xlsx")
+print("Data imported succesfully")
+exclude_cols = ['SNo', 'Year', 'State/UT', 'District']
+crime_cols = [col for col in data.columns if col not in exclude_cols and data[col].dtype in ['int64', 'float64']]
+
+# Group by State/UT and calculate total crimes
+state_crimes = data.groupby('State')[crime_cols].sum()
+state_crimes['Total Crimes'] = state_crimes.sum(axis=1)
+
+# Sort and get top 10 states
+top10_states = state_crimes['Total Crimes'].sort_values(ascending=False).head(10)
+
+# Plot pie chart
+plt.figure(figsize=(10, 8))
+plt.pie(top10_states, labels=top10_states.index, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 9})
+plt.title('Top 10 States Contributing to National Crimes Against Women', fontsize=14)
+plt.tight_layout()
+plt.show()
 
 
-# %%
 
 
 
